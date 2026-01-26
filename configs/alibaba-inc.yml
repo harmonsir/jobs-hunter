@@ -1,0 +1,17 @@
+project_name: alibaba-inc
+target_url: "https://aidc-jobs.alibaba.com/off-campus/position-list?lang=zh"
+max_pages: 100
+headless: true
+crawler:
+  patterns:
+    next_button:
+      - "button[aria-label*='下一页']"
+interceptors:
+  - "disable_trace"
+after_response:
+  - type: "save_json"
+    url_contains: "position/search"
+rate_limit:
+  requests_per_minute: 35
+  burst_capacity: 3
+  min_interval: 1.2
