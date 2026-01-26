@@ -1,0 +1,15 @@
+project_name: xiaomi
+target_url: "https://xiaomi.jobs.f.mioffice.cn/index"
+max_pages: 100
+headless: true
+crawler:
+  patterns:
+    next_button:
+      - "li[title='下一页']"
+after_response:
+  - type: "save_json"
+    url_contains: "api/v1/search/job/posts"
+rate_limit:
+  requests_per_minute: 35
+  burst_capacity: 3
+  min_interval: 1.2

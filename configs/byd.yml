@@ -1,0 +1,23 @@
+project_name: byd
+target_url: "https://job.byd.com/portal/pc/#/social/socialMainPageSocial"
+max_pages: 100
+headless: true
+crawler:
+  patterns:
+    next_button:
+      - "li[title='下一页']"
+page_actions:
+  - type: "eval_js"
+    builtin: "link_capture"
+    replace:
+      listSelectors:
+        - ".tablecom"
+      clickSelectors:
+        - ".position-link"
+    use_safe_eval: true
+  - type: "save_html"
+    clean_html: true
+rate_limit:
+  requests_per_minute: 35
+  burst_capacity: 3
+  min_interval: 1.2

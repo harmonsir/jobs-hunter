@@ -1,0 +1,11 @@
+project_name: weride
+target_url: "https://app.mokahr.com/apply/jingchi/2138#/jobs?page=1&pageSize=20"
+max_pages: 100
+headless: true
+page_actions:
+  - type: "save_html"
+    clean_html: true
+rate_limit:
+  requests_per_minute: 35
+  burst_capacity: 3
+  min_interval: 1.2

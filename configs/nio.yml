@@ -1,0 +1,29 @@
+project_name: nio
+target_url: "https://www.nio.cn/careers/jobs"
+max_pages: 100
+headless: false
+crawler:
+  patterns:
+    next_button:
+      - "div[class*='CareerListPagination'] i:last-of-type"
+      - "//div[contains(@class, 'CareerListPagination')]//i[last()]"
+interceptors:
+  - "disable_trace"
+page_actions:
+  - type: "eval_js"
+    builtin: "link_capture"
+    replace:
+      listSelectors:
+        - "table"
+      clickSelectors:
+        - "td[class*=\"CareerListItemTitle\"]"
+    use_safe_eval: true
+  - type: "save_html"
+    clean_html: true
+after_response:
+  - type: "save_json"
+    url_contains: "api/v1/search/job/posts"
+rate_limit:
+  requests_per_minute: 35
+  burst_capacity: 3
+  min_interval: 1.0

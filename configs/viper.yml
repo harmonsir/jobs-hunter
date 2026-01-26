@@ -1,0 +1,15 @@
+project_name: viper
+target_url: "https://app-tc.mokahr.com/social-recruitment/vipshophr/10038#/jobs?page=1&anchorName=jobsList&zhineng%5B0%5D=10070&zhineng%5B1%5D=10073&zhineng%5B2%5D=10071&zhineng%5B3%5D=10076&zhineng%5B4%5D=10075&zhineng%5B5%5D=10084&zhineng%5B6%5D=6083&zhineng%5B7%5D=6089&zhineng%5B8%5D=6091&zhineng%5B9%5D=6087&zhineng%5B10%5D=8042&zhineng%5B11%5D=10077"
+max_pages: 100
+headless: false
+crawler:
+  patterns:
+    next_button:
+      - "//button[@data-testid='next-page']"
+page_actions:
+  - type: "save_html"
+    clean_html: true
+rate_limit:
+  requests_per_minute: 35
+  burst_capacity: 3
+  min_interval: 2.0

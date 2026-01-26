@@ -1,0 +1,25 @@
+project_name: hsbc
+target_url: "https://portal.careers.hsbc.com/careers?location=China&pid=1&domain=hsbc.com&sort_by=relevance"
+max_pages: 100
+headless: false
+crawler:
+  settings:
+    resource_blocklist:
+      - "image"
+      - "media"
+      - "font"
+  patterns:
+    next_button:
+      - "//button[contains(text(), '显示更多职位')]"
+      - ".show-more-positions"
+interceptors:
+  - "disable_trace"
+after_response:
+  - type: "save_json"
+    url_contains: "/api/apply/v2/jobs?"
+    json_path:
+      - "positions"
+rate_limit:
+  requests_per_minute: 35
+  burst_capacity: 3
+  min_interval: 1.2
